@@ -1,0 +1,9 @@
+.header {
+  @include flex(row, space-between, center);
+  max-height: rem(92px, 16px);
+  padding: rem(10px, 16px);
+  &__btn {
+    @include flex('', space-between, center);
+    width: rem(400px, 14px);
+  }
+}
