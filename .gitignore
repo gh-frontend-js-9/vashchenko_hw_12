@@ -1,0 +1,9 @@
+﻿**/trash
+**/.idea
+**/node_modules
+*.psd
+
+*.map
+*.css.map
+**.map
+**.css.map
