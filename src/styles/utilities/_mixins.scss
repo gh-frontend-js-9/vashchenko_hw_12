@@ -1,0 +1,14 @@
+@mixin flex ($fd: row,
+             $jc:unset,
+             $ai:unset) {
+  display: flex;
+  flex-direction: $fd;
+  justify-content: $jc;
+  align-items: $ai;
+}
+
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+

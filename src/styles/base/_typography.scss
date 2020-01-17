@@ -1,0 +1,15 @@
+html, body {
+  line-height: $mainLineHeight;
+  font-size: $fontSize;
+  color: $title-color;
+  background-color: $background-color;
+  @media (min-width: $phoneWidth) {
+    font-size: $fontSize - 4px;
+  }
+  @media (min-width: $desktopWidth) {
+    font-size: $fontSize;
+  }
+  @media (min-width: $desktopWidth + 500px) {
+    font-size: $fontSize + 2px;
+  }
+}
