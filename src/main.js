@@ -10,14 +10,38 @@ import {loginForm} from './scripts/page/form.js';
 import {createElement} from "./scripts/func/createElement";
 import {header} from "./scripts/page/header.js";
 import './assets/images/logo.png';
+import {signUpForm} from "./scripts/page/form";
 
 let appStatus = false;
+
 if (appStatus === false) {
   appStatus = true;
   console.log('App in a live. App load status: '+ appStatus);
   console.log(window.location.hostname);
-  header();
+  loginForm();
 }
+
+document.addEventListener('click', function(e) {
+  if (e.target.id === 'login') {
+    loginForm();
+  }
+  if (e.target.id === 'signUp') {
+    signUpForm();
+  }
+  if (e.target.id === 'resetPassword') {
+    loginForm();
+  }
+  if (e.target.id === 'logInSubmit') {
+    form();
+  }
+  if (e.target.id === 'signup') {
+    sigupForm();
+  }
+  if (e.target.id === 'resetpassword') {
+    resetForm();
+  }
+});
+
 
 //
 // import {signUpHTML, sign} from './scripts/sign.js';
@@ -47,29 +71,7 @@ if (appStatus === false) {
 //     func.innerHTML = value;
 //   }
 //
-//   document.addEventListener('click', function(e) {
-//     if (e.target.id === 'login') {
-//       insertText();
-//       insertText(logInHTML, content)
-//     }
-//     if (e.target.id === 'sign') {
-//       insertText('Sign up new account', titleElement);
-//       insertText(signUpHTML, content)
-//     }
-//     if (e.target.id === 'reset') {
-//       insertText('Reset password or sing up new account', titleElement);
-//       insertText(resetPasswordHTML, content)
-//     }
-//     if (e.target.id === 'logInSubmit') {
-//       form();
-//     }
-//     if (e.target.id === 'signup') {
-//       sigupForm();
-//     }
-//     if (e.target.id === 'resetpassword') {
-//       resetForm();
-//     }
-//   });
+
 //
 //
 // function form () {

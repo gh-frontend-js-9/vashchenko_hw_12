@@ -74,8 +74,8 @@ export class CreateElement {
     inputName, type, value, placeholder,
     cssClassInput, cssClassLable,
     lableText, inputStyle, lableStyle){
-    createElement({id: out}, 'label', {for: id, type: type, class: cssClassLable}, lableText, lableStyle);
-    createElement({id: out}, 'input', {id: id, type: type, class: cssClassInput, placeholder: placeholder, value: value},'',inputStyle)
+    createElement({id: out}, 'label', {for: id, class: cssClassLable}, lableText, lableStyle);
+    createElement({id: out}, 'input', {id: id, name: inputName, type: type, class: cssClassInput, placeholder: placeholder, value: value},'',inputStyle)
   }
 
   addNewElement(out, name, attr, text, style){
