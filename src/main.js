@@ -1,6 +1,7 @@
 'use strict';
 
 import 'babel-polyfill';
+import 'jQuery';
 import './styles/main.scss';
 import './assets/fonts/themify.eot';
 import './assets/fonts/themify.svg';
@@ -9,11 +10,12 @@ import './assets/fonts/themify.woff';
 import {loginForm} from './scripts/page/form.js';
 import {createElement} from "./scripts/func/createElement";
 import {header} from "./scripts/page/header.js";
+//
 import './assets/images/logo.png';
+
 import {signUpForm} from "./scripts/page/form";
 
 let appStatus = false;
-
 if (appStatus === false) {
   appStatus = true;
   console.log('App in a live. App load status: '+ appStatus);
@@ -21,14 +23,13 @@ if (appStatus === false) {
   loginForm();
 }
 
+
+
+
+//
+
 document.addEventListener('click', function(e) {
   if (e.target.id === 'login') {
-    loginForm();
-  }
-  if (e.target.id === 'signUp') {
-    signUpForm();
-  }
-  if (e.target.id === 'resetPassword') {
     loginForm();
   }
   if (e.target.id === 'logInSubmit') {
@@ -41,9 +42,6 @@ document.addEventListener('click', function(e) {
     resetForm();
   }
 });
-
-
-//
 // import {signUpHTML, sign} from './scripts/sign.js';
 // import {resetPasswordHTML, reset} from './scripts/reset.js';
 // import {validEmail, validPassword, validName} from './scripts/validation.js';
@@ -53,8 +51,6 @@ document.addEventListener('click', function(e) {
 //   const titleElement = document.getElementById('status');
 //   const avatar = document.getElementById('avatar');
 //   const content = document.getElementById('app');
-
-//
 //
 //
 //   if (avatar.src.substr(-3) !== 'png' || avatar.src.substr(-3) !== 'jpg' ) {

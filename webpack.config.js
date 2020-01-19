@@ -89,6 +89,18 @@ module.exports = {
     }),
     new htmlWebpackPlug({
       favicon: './src/assets/images/favicon.png',
+      filename: 'signup.html',
+      template: path.join(__dirname, 'src/pages', 'signup.html'),
+      hash: true,
+    }),
+    new htmlWebpackPlug({
+      favicon: './src/assets/images/favicon.png',
+      filename: 'reset.html',
+      template: path.join(__dirname, 'src/pages', 'reset.html'),
+      hash: true,
+    }),
+    new htmlWebpackPlug({
+      favicon: './src/assets/images/favicon.png',
       filename: 'home.html',
       template: path.join(__dirname, 'src', 'index.html'),
       hash: true
