@@ -1,10 +1,12 @@
 import {CreateElement} from "../func/createElement";
 import {RequestToServer} from "../request/requests";
-import {ApiURL, ContentType, AppJSON, AccesTOKEN} from "../variable/variables";
+import {usersURL, ContentType, AppJSON, AccesTOKEN} from "../variable/variables";
 import {elementToId} from "../func/elementToID";
+import {validEmail, validName, validPassword} from "../func/validation";
 
 let reqToServ = new RequestToServer();
 
+// Render Log In page
 export function renderLoginForm() {
   let logIn = new CreateElement();
   logIn.addNewElement(
@@ -62,28 +64,41 @@ export function renderLoginForm() {
   logIn.addLink('loginStatus', 'resetPassword','text-capitalize','reset.html','Sign Up', 'Reset password', 'Reset password?');
 }
 
-
 document.addEventListener('click', function(e) {
   if (e.target.id === 'logInSubmit') {
-    let sendData = {
-      "email": elementToId('email').value,
-      "password": elementToId('password').value
-    };
-    reqToServ.postData(ApiURL, ContentType, AppJSON, sendData)
+    let emailValid = validEmail(elementToId('email'));
+    let passwordValid = validPassword(elementToId('password'));
+    if (emailValid === true && passwordValid === true) {
+      let sendData = {
+        "email": elementToId('email').value,
+        "password": elementToId('password').value
+      };
+      reqToServ.postData(`${usersURL}login`, ContentType, AppJSON, sendData)
+    }
   }
   if (e.target.id === 'signSubmit') {
-    let sendData = {
-      "email": elementToId('email').value,
-      "password": elementToId('password').value,
-      "name": elementToId('name').value
-    };
-    reqToServ.postData(ApiURL, ContentType, AppJSON, sendData)
+    let nameValid = validName(elementToId('name'));
+    let emailValid = validEmail(elementToId('email'));
+    let passwordValid = validPassword(elementToId('password'), elementToId('confirmationPassword'));
+    if (nameValid === true && emailValid === true && passwordValid === true) {
+      let sendData = {
+        "email": elementToId('email').value,
+        "password": elementToId('password').value,
+        "name": elementToId('name').value
+      };
+      reqToServ.postData(usersURL, ContentType, AppJSON, sendData);
+    }
   }
   if (e.target.id === 'resetSubmit') {
-    let sendData = {
-      "email": elementToId('email').value,
-      "password": elementToId('password').value
-    };
-    reqToServ.postData(ApiURL, ContentType, AppJSON, sendData, 'login.html')
+    let emailValid = validEmail(elementToId('email'));
+    let passwordValid = validPassword(elementToId('password'), elementToId('confirmationPassword'));
+    if (emailValid === true && passwordValid === true) {
+      let sendData = {
+        "password": elementToId('password').value,
+        "confirmationPassword": elementToId('confirmationPassword').value,
+        "email": elementToId('email').value
+      };
+      reqToServ.postData(`${usersURL}reset_password`, ContentType, AppJSON, sendData)
+    }
   }
 });

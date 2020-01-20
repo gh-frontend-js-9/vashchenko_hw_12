@@ -1,7 +1,8 @@
 export const
   POST = 'POST',
   GET = 'GET',
-  ApiURL = '',
+  usersURL = 'https://geekhub-frontend-js-9.herokuapp.com/api/users/',
+  threadURL='https://geekhub-frontend-js-9.herokuapp.com/api/threads',
   ContTYPE = 'Content-Type',
   AppJSON = 'application/json',
   DefREDIRECT = 'follow',

@@ -9,6 +9,8 @@ import './assets/fonts/themify.ttf';
 import './assets/fonts/themify.woff';
 import {renderLoginForm} from './scripts/page/form.js';
 
-if (window.location.pathname === '/index.html' || window.location.pathname === '/') {
+let status = false;
+
+if (window.location.pathname === '/index.html' || window.location.pathname === '/' || !status) {
   renderLoginForm();
 }

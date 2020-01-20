@@ -53,14 +53,12 @@ export class RequestToServer {
 }
 
   async function fetchData(url, requestOptions) {
-    console.log(url);
-    console.log(JSON.stringify(requestOptions));
     try {
       const response = await fetch(url, requestOptions);
       let result = await response.json();
       console.log(localStorage.token);
       return result;
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error message:', error);
     }
   }
