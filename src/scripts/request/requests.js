@@ -1,7 +1,6 @@
 import {GET, POST, ContentType, AppJSON, DefREDIRECT} from "../variable/variables";
 
 export class RequestToServer {
-
   postData(url, headerName, headerValue, data, redirectPage) {
     if (!headerName) {
       headerName = ContentType;
@@ -56,7 +55,8 @@ export class RequestToServer {
     try {
       const response = await fetch(url, requestOptions);
       let result = await response.json();
-      console.log(localStorage.token);
+      let token = localStorage.setItem('token', result.headers.get('X-Auth-Token'));
+      console.log(token);
       return result;
     } catch (error) {
       console.error('Error message:', error);
