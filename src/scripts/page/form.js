@@ -1,6 +1,6 @@
 import {CreateElement} from "../func/createElement";
-import {RequestToServer} from "../request/requests";
-import {usersURL, ContentType, AppJSON, AccesTOKEN} from "../variable/variables";
+import {autoLogin, RequestToServer} from "../request/requests";
+import {usersURL, ContTYPE, AppJSON} from "../variable/variables";
 import {elementToId} from "../func/elementToID";
 import {validEmail, validName, validPassword} from "../func/validation";
 
@@ -66,6 +66,10 @@ export function renderLoginForm() {
 
 document.addEventListener('click', function(e) {
   if (e.target.id === 'logInSubmit') {
+    let rememberMe = false;
+    if (elementToId('rememberMe').checked) {
+      rememberMe = true;
+    }
     let emailValid = validEmail(elementToId('email'));
     let passwordValid = validPassword(elementToId('password'));
     if (emailValid === true && passwordValid === true) {
@@ -73,8 +77,9 @@ document.addEventListener('click', function(e) {
         "email": elementToId('email').value,
         "password": elementToId('password').value
       };
-      reqToServ.postData(`${usersURL}login`, ContentType, AppJSON, sendData)
+      reqToServ.postData(`${usersURL}login`, ContTYPE, AppJSON, sendData, '',rememberMe)
     }
+    setInterval(10000, autoLogin(sessionStorage.token));
   }
   if (e.target.id === 'signSubmit') {
     let nameValid = validName(elementToId('name'));

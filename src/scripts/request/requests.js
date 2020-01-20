@@ -1,15 +1,15 @@
-import {GET, POST, ContentType, AppJSON, DefREDIRECT} from "../variable/variables";
+import {GET, POST, ContTYPE, AppJSON, DefREDIRECT, usersURL} from "../variable/variables";
 
 export class RequestToServer {
-  postData(url, headerName, headerValue, data, redirectPage) {
+  postData(url, headerName, headerValue, data, redirectPage, rememberMe) {
     if (!headerName) {
-      headerName = ContentType;
+      headerName = ContTYPE;
     }
     if (!headerValue) {
       headerValue = AppJSON;
     }
     if (!redirectPage) {
-      redirectPage = 'follow'
+      redirectPage = DefREDIRECT;
     }
     let requestHeader = new Headers();
     requestHeader.append(headerName, headerValue);
@@ -23,11 +23,10 @@ export class RequestToServer {
       redirect: redirectPage
     };
 
-    let promises =  fetchData(url, requestOptions);
-    console.log(promises);
+    fetchData(url, requestOptions, rememberMe);
   }
 
-  getData(url, headerName, headerValue, redirectPage) {
+  getData(url, headerName, headerValue, redirectPage, rememberMe) {
     if (!headerName) {
       headerName = ContTYPE;
     }
@@ -46,19 +45,44 @@ export class RequestToServer {
       redirect: redirectPage
     };
 
-    let promises =  fetchData(url, requestOptions);
-    console.log(promises);
+    fetchData(url, requestOptions, rememberMe);
   }
 }
 
-  async function fetchData(url, requestOptions) {
+  async function fetchData(url, requestOptions, rememberMe) {
     try {
       const response = await fetch(url, requestOptions);
+      let token = sessionStorage.setItem('token', response.headers.get('X-Auth-Token'));
+      if (rememberMe) {
+        token = localStorage.setItem('token', response.headers.get('X-Auth-Token'));
+      }
       let result = await response.json();
-      let token = localStorage.setItem('token', result.headers.get('X-Auth-Token'));
-      console.log(token);
-      return result;
+      console.log("Request result" + result);
+      console.log(localStorage.getItem('token'));
+      console.log(localStorage.token);
     } catch (error) {
       console.error('Error message:', error);
     }
   }
+
+export function autoLogin(token) {
+  if (token) {
+    fetch(`${usersURL}login`, {
+      method: GET,
+      headers: {
+        'X-Access-Token': token,
+      }
+    }).then((res) => {
+      console.log(res);
+      return res.json();
+    }).then((user) => {
+      window.location.replace('home.html');
+      // document.getElementById('container').innerHTML = 'Hi, ' + user.name;
+    }).catch((error) =>{
+      console.log(error);
+      return window.location.replace('index.html')
+    });
+  } else {
+    // document.getElementById('container').innerHTML = 'Login, please'
+  }
+}

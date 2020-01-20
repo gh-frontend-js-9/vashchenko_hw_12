@@ -27,7 +27,6 @@ export function validPassword(passwordID, confirmPasswordID) {
     passwordID.style.border = "1px solid #ced4da";
     return true;
   } else {
-    confirmPasswordID.style.border = "1px solid #ced4da";
     passwordID.style.border = "1px solid #ced4da";
     return true;
   }

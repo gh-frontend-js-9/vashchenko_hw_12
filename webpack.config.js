@@ -102,7 +102,7 @@ module.exports = {
     new htmlWebpackPlug({
       favicon: './src/assets/images/favicon.png',
       filename: 'home.html',
-      template: path.join(__dirname, 'src', 'index.html'),
+      template: path.join(__dirname, 'src/pages', 'index.html'),
       hash: true
     }),
   ]
