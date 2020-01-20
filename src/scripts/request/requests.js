@@ -11,7 +11,7 @@ var requestOptions = {
   redirect: 'follow'
 };
 
-fetch("https://geekhub-frontend-js-9.herokuapp.com/api/users/", requestOptions)
+await fetch("https://geekhub-frontend-js-9.herokuapp.com/api/users/", requestOptions)
   .then(response => response.text())
   .then(result => console.log(result))
   .catch(error => console.log('error', error));
