@@ -1,172 +1,66 @@
-// POST SIGN UP
-var myHeaders = new Headers();
-myHeaders.append("Content-Type", "application/json");
+import {GET, POST, ContentType, AppJSON, DefREDIRECT} from "../variable/variables";
 
-var raw = JSON.stringify({"email":"john.doe@email.com","password":"11111111","name":"John Doe"});
+export class RequestToServer {
 
-var requestOptions = {
-  method: 'POST',
-  headers: myHeaders,
-  body: raw,
-  redirect: 'follow'
-};
-
-await fetch("https://geekhub-frontend-js-9.herokuapp.com/api/users/", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
-
-// POST LOG IN
-var myHeaders = new Headers();
-myHeaders.append("Content-Type", "application/json");
-
-var raw = JSON.stringify({"email":"john.doe@email.com","password":"44444444"});
-
-var requestOptions = {
-  method: 'POST',
-  headers: myHeaders,
-  body: raw,
-  redirect: 'follow'
-};
-
-fetch("https://geekhub-frontend-js-9.herokuapp.com/api/users/login", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
-
-// POST RESET
-var myHeaders = new Headers();
-myHeaders.append("x-access-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTE5YzIyM2E0MTk5YzAwMjI3NTI2OGEiLCJpYXQiOjE1Nzk0Mzk3MjJ9.-SbOnQ997-0pDHoqw8cuFe2cKJyD0CTY1Y8leUGTpwY");
-myHeaders.append("Content-Type", "application/json");
-
-var raw = JSON.stringify({"password":"44444444","confirmationPassword":"44444444","email":"john.doe@email.com"});
-
-var requestOptions = {
-  method: 'POST',
-  headers: myHeaders,
-  body: raw,
-  redirect: 'follow'
-};
-
-fetch("https://geekhub-frontend-js-9.herokuapp.com/api/users/reset_password", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
+  postData(url, headerName, headerValue, data, redirectPage) {
+    if (!headerName) {
+      headerName = ContentType;
+    }
+    if (!headerValue) {
+      headerValue = AppJSON;
+    }
+    if (!redirectPage) {
+      redirectPage = 'follow'
+    }
+    let requestHeader = new Headers();
+    requestHeader.append(headerName, headerValue);
+    let requestData = JSON.stringify(data);
 
 
-// GET Get current user
-var myHeaders = new Headers();
-myHeaders.append("x-access-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTE5YzIyM2E0MTk5YzAwMjI3NTI2OGEiLCJpYXQiOjE1Nzk0Mzk3MjJ9.-SbOnQ997-0pDHoqw8cuFe2cKJyD0CTY1Y8leUGTpwY");
+    let requestOptions = {
+      method: POST,
+      headers: requestHeader,
+      body: requestData,
+      redirect: redirectPage
+    };
 
-var requestOptions = {
-  method: 'GET',
-  headers: myHeaders,
-  redirect: 'follow'
-};
+    let promises =  fetchData(url, requestOptions);
+    console.log(promises);
+  }
 
-fetch("https://geekhub-frontend-js-9.herokuapp.com/api/users/", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
+  getData(url, headerName, headerValue, redirectPage) {
+    if (!headerName) {
+      headerName = ContTYPE;
+    }
+    if (!headerValue) {
+      headerValue = AppJSON;
+    }
+    if (!redirectPage) {
+      redirectPage = DefREDIRECT;
+    }
+    let requestHeader = new Headers();
+    requestHeader.append(headerName, headerValue);
 
-// GET Get all users
-var myHeaders = new Headers();
-myHeaders.append("x-access-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTE5YzIyM2E0MTk5YzAwMjI3NTI2OGEiLCJpYXQiOjE1Nzk0Mzk3MjJ9.-SbOnQ997-0pDHoqw8cuFe2cKJyD0CTY1Y8leUGTpwY");
+    let requestOptions = {
+      method: GET,
+      headers: requestHeader,
+      redirect: redirectPage
+    };
 
-var requestOptions = {
-  method: 'GET',
-  headers: myHeaders,
-  redirect: 'follow'
-};
+    let promises =  fetchData(url, requestOptions);
+    console.log(promises);
+  }
+}
 
-fetch("https://geekhub-frontend-js-9.herokuapp.com/api/users/all", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
-
-// GET Get user by id
-var myHeaders = new Headers();
-myHeaders.append("x-access-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTE5YzIyM2E0MTk5YzAwMjI3NTI2OGEiLCJpYXQiOjE1Nzk0Mzk3MjJ9.-SbOnQ997-0pDHoqw8cuFe2cKJyD0CTY1Y8leUGTpwY");
-
-var requestOptions = {
-  method: 'GET',
-  headers: myHeaders,
-  redirect: 'follow'
-};
-
-fetch("https://geekhub-frontend-js-9.herokuapp.com/api/users/5e19c223a4199c002275268a", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
-
-
-// GET Retrieve all threads
-var myHeaders = new Headers();
-myHeaders.append("x-access-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTE5YzIyM2E0MTk5YzAwMjI3NTI2OGEiLCJpYXQiOjE1Nzk0Mzk3MjJ9.-SbOnQ997-0pDHoqw8cuFe2cKJyD0CTY1Y8leUGTpwY");
-
-var requestOptions = {
-  method: 'GET',
-  headers: myHeaders,
-  redirect: 'follow'
-};
-
-fetch("https://geekhub-frontend-js-9.herokuapp.com/api/threads", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
-
-
-// GET Retrieve all thread messages
-var myHeaders = new Headers();
-myHeaders.append("x-access-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTE5YzIyM2E0MTk5YzAwMjI3NTI2OGEiLCJpYXQiOjE1Nzk0Mzk3MjJ9.-SbOnQ997-0pDHoqw8cuFe2cKJyD0CTY1Y8leUGTpwY");
-
-var requestOptions = {
-  method: 'GET',
-  headers: myHeaders,
-  redirect: 'follow'
-};
-
-fetch("https://geekhub-frontend-js-9.herokuapp.com/api/threads/messages/5e1a1c818ec2f49ab3e59ab2", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
-
-
-// POST Create a thread
-var myHeaders = new Headers();
-myHeaders.append("x-access-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTE5YzIyM2E0MTk5YzAwMjI3NTI2OGEiLCJpYXQiOjE1Nzk0Mzk3MjJ9.-SbOnQ997-0pDHoqw8cuFe2cKJyD0CTY1Y8leUGTpwY");
-myHeaders.append("Content-Type", "application/json");
-
-var raw = JSON.stringify({"user":{"_id":"5e19c223a4199c002275268a"}});
-
-var requestOptions = {
-  method: 'POST',
-  headers: myHeaders,
-  body: raw,
-  redirect: 'follow'
-};
-
-fetch("https://geekhub-frontend-js-9.herokuapp.com/api/threads", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
-
-
-// POST Send message
-var myHeaders = new Headers();
-myHeaders.append("x-access-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTE5YzIyM2E0MTk5YzAwMjI3NTI2OGEiLCJpYXQiOjE1Nzk0Mzk3MjJ9.-SbOnQ997-0pDHoqw8cuFe2cKJyD0CTY1Y8leUGTpwY");
-myHeaders.append("Content-Type", "application/json");
-
-var raw = JSON.stringify({"thread":{"_id":"5e1a1c818ec2f49ab3e59ab2"},"message":{"body":"Hello, friend!"}});
-
-var requestOptions = {
-  method: 'POST',
-  headers: myHeaders,
-  body: raw,
-  redirect: 'follow'
-};
-
-fetch("https://geekhub-frontend-js-9.herokuapp.com/api/threads/messages", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
+  async function fetchData(url, requestOptions) {
+    console.log(url);
+    console.log(JSON.stringify(requestOptions));
+    try {
+      const response = await fetch(url, requestOptions);
+      let result = await response.json();
+      console.log(localStorage.token);
+      return result;
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }

@@ -1,6 +1,6 @@
 'use strict';
 
-export function createElement (out, name, attr, text, style) {
+function createElement (out, name, attr, text, style) {
   let parent = document.getElementsByTagName('BODY')[0];
   let element = document.createElement(name);
 
@@ -40,22 +40,13 @@ export function createElement (out, name, attr, text, style) {
       element.innerHTML = text;
     } else {
       element.appendChild(document.createTextNode(text));
-      console.log('var2');
     }
   }
 
   parent.appendChild(element);
 }
 
-function idGenerator() {
-  return `f${(~~(Math.random()*1e4)).toString(20)}`;
-}
-
-
 export class CreateElement {
-  constructor(params) {
-    this.params = params;
-  }
 
   addDiv(out, id, cssClass, text, style) {
     createElement({id: out}, 'div', {id: id, class: cssClass}, text, style);
@@ -82,3 +73,5 @@ export class CreateElement {
     createElement(out, name, attr, text, style);
   }
 }
+
+
