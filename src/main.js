@@ -12,7 +12,7 @@ import {autoLogin} from "./scripts/request/requests";
 
 let status = false;
 
-if (window.location.pathname === '/index.html' || window.location.pathname === '/' || !status) {
+if (window.location.pathname === '/home.html' || window.location.pathname === '/' || !status) {
   renderLoginForm();
   autoLogin(localStorage.getItem('token'));
 }
