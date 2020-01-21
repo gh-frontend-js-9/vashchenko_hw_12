@@ -105,5 +105,11 @@ module.exports = {
       template: path.join(__dirname, 'src/pages', 'index.html'),
       hash: true
     }),
+    new htmlWebpackPlug({
+      favicon: './src/assets/images/favicon.png',
+      filename: 'component/header.html',
+      template: path.join(__dirname, 'src/pages/component', 'header.html'),
+      hash: true
+    }),
   ]
 };

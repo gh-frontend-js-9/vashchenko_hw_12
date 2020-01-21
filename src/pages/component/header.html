@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <style>
+    #timer {
+      color: red;
+      font-size: 40px;
+    }
+  </style>
+</head>
+
+<body>
+
+
+<p id="timer">
+  This is the test text
+<div id="headerLogo" class="header col-md-1">
+
+  </div>
+</p>
+
+
+<script>
+  var localDocument = document.currentScript.ownerDocument;
+  var someHtml = localDocument.getElementById('timer');
+  var someHtml2 = localDocument.getElementById('headerLogo');
+
+  document.body.appendChild(someHtml);
+  document.body.appendChild(someHtml2);
+</script>
+
+</body>
+
+</html>
