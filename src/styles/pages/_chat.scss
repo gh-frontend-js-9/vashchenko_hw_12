@@ -1,0 +1,87 @@
+.message {
+  height: 85%;
+
+  &__conversation {
+    font-size: rem(12, $fontSize);
+    background-color: $background-row-1;
+    &-list{
+      height: 130%;
+      overflow: auto;
+    }
+    &-user--active {
+      background-color: $background-color;
+    }
+    &-user:hover {
+      background-color: $background-color;
+    }
+  }
+
+  &__thread {
+    font-size: rem(12, $fontSize);
+    background-color: $background-color;
+    &-list {
+      padding: 10px;
+      height: 85%;
+      overflow: auto;
+    }
+    &-incoming{
+      &--text {
+        background-color: $item-color;
+        border-radius: 10px 10px 10px 0;
+      }
+    }
+    &-outgoing{
+      &--text {
+        background-color: $primary-color;
+        border-radius: 10px 10px 0 10px;
+      }
+    }
+    &-input{
+      width: 80%;
+      font-size: $fontSize;
+      color: $title-color;
+      padding: 5px 10px;
+      border-radius: rem(10, $fontSize);
+      border: 1px solid rgba(156, 161, 178, 0.3);
+      background-color: #404359;
+    }
+  }
+
+  &__user {
+    height: 100%;
+    overflow: auto;
+    &--card{
+      padding: 2rem 1rem;
+      margin: 0 auto;
+      width: 80%;
+    }
+    &--photo{
+      width: rem(100, $fontSize);
+      margin-bottom: rem(20, $fontSize);
+    }
+    &--name{
+      color: $title-color;
+      font-size: rem(22, $fontSize);
+    }
+    &--position{
+      color: $text-color;
+      font-size: rem(16, $fontSize);
+    }
+    &--description{
+      color: $text-color;
+      font-size: rem(12, $fontSize);
+    }
+    &--data{
+      color: $text-color;
+      font-size: rem(12, $fontSize);
+    }
+    &--link{
+      color: $title-color;
+      font-size: rem(14, $fontSize);
+      &:hover{
+        color: $primary-color;
+      }
+    }
+  }
+
+}

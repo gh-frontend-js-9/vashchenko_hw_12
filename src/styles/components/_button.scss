@@ -1,0 +1,24 @@
+.control-btn {
+  color: $title-color;
+  font-size: $fontSize;
+  &--active {
+    color: $primary-color;
+  }
+  &:hover &--active{
+    color: $title-color;
+  }
+  &:hover {
+    color: $default-color;
+  }
+  &--dark {
+    font-size: $fontSize;
+    color: $default-color;
+    font-size: $fontSize + 2px;
+    &:hover {
+      color: $title-color;
+    }
+  }
+  &:hover &--dark {
+    color: $title-color;
+  }
+}

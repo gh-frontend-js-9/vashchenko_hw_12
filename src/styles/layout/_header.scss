@@ -1,10 +1,10 @@
 .header {
   @include flex(row, space-between, center);
-  max-height: rem(92px, $fontSize);
+  height: 10%;
   padding: rem(10px, $fontSize);
   background-color: $item-color;
   &__btn {
     @include flex('', space-between, center);
-    width: rem(400px, $fontSize);
+    width: rem(420px, $fontSize);
   }
 }

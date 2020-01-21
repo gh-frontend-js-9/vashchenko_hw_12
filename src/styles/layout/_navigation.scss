@@ -1,4 +1,9 @@
 .navigation {
   background-color: $item-color;
-  max-width: rem(96, $fontSize);
+  height: 100%;
+  width: rem(96, $fontSize);
+  &__list {
+    height: 100%;
+    max-height: rem(400, $fontSize);
+  }
 }

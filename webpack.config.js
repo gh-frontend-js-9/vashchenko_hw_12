@@ -20,17 +20,6 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
       },
-      // {
-      //   test: /\.html$/,
-      //   use: [
-      //     {
-      //       loader: 'html-loader',
-      //       options: {
-      //         minimize: true,
-      //       },
-      //     },
-      //   ],
-      // },
       {
         test: /\.s[ac]ss$/i,
         use: [
@@ -103,6 +92,18 @@ module.exports = {
       favicon: './src/assets/images/favicon.png',
       filename: 'home.html',
       template: path.join(__dirname, 'src/pages', 'home.html'),
+      hash: true
+    }),
+    new htmlWebpackPlug({
+      favicon: './src/assets/images/favicon.png',
+      filename: 'thread-html.html',
+      template: path.join(__dirname, 'src/pages', 'thread-html.html'),
+      hash: true
+    }),
+    new htmlWebpackPlug({
+      favicon: './src/assets/images/favicon.png',
+      filename: 'thread.html',
+      template: path.join(__dirname, 'src/pages', 'thread.html'),
       hash: true
     })
   ]

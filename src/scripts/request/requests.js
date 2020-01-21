@@ -57,9 +57,6 @@ export class RequestToServer {
         token = localStorage.setItem('token', response.headers.get('X-Auth-Token'));
       }
       let result = await response.json();
-      console.log("Request result" + result);
-      console.log(localStorage.getItem('token'));
-      console.log(localStorage.token);
     } catch (error) {
       console.error('Error message:', error);
     }
@@ -77,12 +74,13 @@ export function autoLogin(token) {
       return res.json();
     }).then((user) => {
       window.location.replace('home.html');
-      // document.getElementById('container').innerHTML = 'Hi, ' + user.name;
+      console.log("User data: " + user);
+      return true
     }).catch((error) =>{
       console.log(error);
-      return window.location.replace('index.html')
+      window.location.replace('index.html')
     });
   } else {
-    // document.getElementById('container').innerHTML = 'Login, please'
+
   }
 }
