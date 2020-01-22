@@ -11,22 +11,18 @@ export function validEmail(emailId) {
 }
 
 export function validPassword(passwordID, confirmPasswordID) {
-  if (confirmPasswordID && passwordID.value !== confirmPasswordID.value || passwordID.value <= 6 && confirmPasswordID.value <= 6) {
+  if (passwordID.length <= 6 || passwordID.value === "") {
+    passwordID.style.border = "1px solid #ff0000";
+    passwordID.value = "";
+    passwordID.placeholder = "Enter the valid password";
+  } else if (confirmPasswordID && passwordID.value !== confirmPasswordID.value) {
     passwordID.style.border = "1px solid #ff0000";
     confirmPasswordID.style.border = "1px solid #ff0000";
     passwordID.value = "";
     confirmPasswordID.value = "";
     passwordID.placeholder = "Enter the valid password";
     confirmPasswordID.placeholder = "Enter the valid password";
-  } else if (passwordID.length <= 6) {
-    passwordID.style.border = "1px solid #ff0000";
-    passwordID.value = "";
-    passwordID.placeholder = "Enter the valid password";
-  } else if (confirmPasswordID) {
-    confirmPasswordID.style.border = "1px solid #ced4da";
-    passwordID.style.border = "1px solid #ced4da";
-    return true;
-  } else {
+  }  else {
     passwordID.style.border = "1px solid #ced4da";
     return true;
   }

@@ -49,38 +49,47 @@ export class RequestToServer {
   }
 }
 
-  async function fetchData(url, requestOptions, rememberMe) {
-    try {
-      const response = await fetch(url, requestOptions);
-      let token = sessionStorage.setItem('token', response.headers.get('X-Auth-Token'));
+function fetchData(url, requestOptions, rememberMe) {
+  fetch(url, requestOptions)
+    .then((respons) => {
+      console.log(respons);
+      console.log(respons['_id']);
+      sessionStorage.setItem('token', respons.headers.get('X-Auth-Token'));
       if (rememberMe) {
-        token = localStorage.setItem('token', response.headers.get('X-Auth-Token'));
+        localStorage.setItem('token', respons.headers.get('X-Auth-Token'));
       }
-      let result = await response.json();
-    } catch (error) {
-      console.error('Error message:', error);
-    }
-  }
+      return respons.json();
+    }).then((result) => {
+    console.log("User data Fetch: " + result);
+    return result;
+  }).catch((error) =>{
+    console.log(error);
+  });
+}
 
 export function autoLogin(token) {
   if (token) {
-    fetch(`${usersURL}login`, {
+    fetch(usersURL, {
       method: GET,
       headers: {
         'X-Access-Token': token,
       }
-    }).then((res) => {
-      console.log(res);
-      return res.json();
+    }).then((respons) => {
+      console.log(respons);
+      return respons.json();
     }).then((user) => {
-      window.location.replace('home.html');
       console.log("User data: " + user);
+      console.log("User data: " + user.name);
+      console.log("User data: " + user._id);
+      console.log("User data: " + user.email);
+      window.location.href = 'home.html';
       return true
     }).catch((error) =>{
       console.log(error);
-      window.location.replace('index.html')
+      window.location.href = 'index.html';
+      return false
     });
   } else {
-
+    // window.location.replace('index.html')
   }
 }

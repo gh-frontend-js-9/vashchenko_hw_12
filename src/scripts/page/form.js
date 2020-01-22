@@ -41,9 +41,9 @@ document.addEventListener('click', function(e) {
         "email": elementToId('email').value,
         "password": elementToId('password').value
       };
-      reqToServ.postData(`${usersURL}login`, ContTYPE, AppJSON, sendData, '',rememberMe)
+      reqToServ.postData(`${usersURL}login`, ContTYPE, AppJSON, sendData, '',rememberMe);
     }
-    setInterval(10000, autoLogin(sessionStorage.token));
+    setInterval(autoLogin(sessionStorage.getItem('token')), 3000);
   }
   if (e.target.id === 'signSubmit') {
     let nameValid = validName(elementToId('name'));
@@ -69,5 +69,8 @@ document.addEventListener('click', function(e) {
       };
       reqToServ.postData(`${usersURL}reset_password`, ContentType, AppJSON, sendData)
     }
+  }
+  if (e.target.id === 'test') {
+      reqToServ.getData(`${usersURL}`, ContentType, AppJSON, sendData)
   }
 });

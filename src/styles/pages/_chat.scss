@@ -21,7 +21,7 @@
     background-color: $background-color;
     &-list {
       padding: 10px;
-      height: 85%;
+      height: 80%;
       overflow: auto;
     }
     &-incoming{
@@ -37,7 +37,10 @@
       }
     }
     &-input{
-      width: 80%;
+      width: 92%;
+      height: rem(60, $fontSize);
+      display: block;
+      margin: 1rem auto;
       font-size: $fontSize;
       color: $title-color;
       padding: 5px 10px;
