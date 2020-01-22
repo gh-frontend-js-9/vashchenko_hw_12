@@ -106,6 +106,6 @@ function outMessage() {
 function getUserProfile () {
   createElement.addNewElement(
     {id: 'userProfile'},
-    
+
   )
 }
