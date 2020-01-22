@@ -53,31 +53,12 @@ function renderConversation () {
   createElement.addNewElement(
     {id: 'listConversation'},
     'li',
-    {id: `(Set_user_id)`, 'class': 'message__conversation-user border-bottom border-dark p-3'}
-  );
-  createElement.addNewElement(
-    {id: `(Set_user_id)`},
-    'div',
-    {id: `(DIV-Set_user_id)`, 'class': 'd-flex flex-row justify-content-between'}
-  );
-      createElement.addNewElement(
-        {id: `(DIV-Set_user_id)`},
-        'p',
-        {'class': 'text-white'},
-        'USER NAME (Micle Stewart)'
-      );
-      createElement.addNewElement(
-        {id: `(DIV-Set_user_id)`},
-        'p',
-        {'class': 'text-primary'},
-        'Date (Today, 5:332 PM)'
-      );
-
-  createElement.addNewElement(
-    {id: `(Set_user_id)`},
-    'p',
-    {'class': 'text-light'},
-    'TAKE SHORT DESCRIPTION ON SERVER RESPONSE DATA'
+    {id: `(Set_user_id)`, 'class': 'message__conversation-user border-bottom border-dark p-3'},
+    `<div class="d-flex flex-row justify-content-between">
+        <p class="text-white" title="SET NAME FOR RESPONSE DATA">Michelle Stewart</p>
+        <p class="text-primary" title="SET DATE FOR RESPONSE DATA">Today, 5:32 PM</p>
+      </div>
+      <p class="text-light" title="SET SHORT DESCRIPTION FOR RESPONSE DATA">Duis aute irure dolor in reprehenderit in voluptate sectetur, numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>`
   );
 }
 
@@ -119,5 +100,12 @@ function outMessage() {
       </p>
       <p class="text-secondary text-right">(Date in response) 4 April 2016, 5:32 PM</p>
     </div>`
+  )
+}
+
+function getUserProfile () {
+  createElement.addNewElement(
+    {id: 'userProfile'},
+    
   )
 }
