@@ -6,5 +6,11 @@
   &__btn {
     @include flex('', space-between, center);
     width: rem(420px, $fontSize);
+    &--photo {
+      width: 100%;
+      max-width: rem(56, $fontSize);
+      display: block;
+      margin: 0 auto;
+    }
   }
 }

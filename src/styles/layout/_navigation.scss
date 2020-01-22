@@ -4,6 +4,17 @@
   width: rem(96, $fontSize);
   &__list {
     height: 100%;
+    min-width: rem(96, $fontSize);
     max-height: rem(400, $fontSize);
+  }
+}
+
+.menu-params {
+  height: 100%;
+  min-height: rem(80px, $fontSize);
+  min-width: 100%;
+  background-color: $warning-color;
+  &__filter {
+    width: rem(320, $fontSize);
   }
 }

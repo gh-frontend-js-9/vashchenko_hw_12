@@ -22,7 +22,7 @@
       <span class="ti-bell"></span>
     </a>
     <a id="profileImgHeader" class="control-btn " href="#" title="" aria-label="">
-      <img id="" class="" src="images/photo.png" alt="">
+      <img id="" class="header__btn--photo" src="images/photo.png" alt="">
     </a>
     <a id="moreHeaderBtn" class="control-btn " href="#" title="" aria-label="">
       <span class="ti-angle-down"></span>
@@ -70,7 +70,7 @@
     <a></a>
   </nav>
   <section id="content" class="content w-100">
-    <div class="d-flex flex-column col-md-12 p-0">
+    <div class="content-menu d-flex flex-column col-md-12 p-0">
       <div class="menu-params d-flex flex-row justify-content-between pl-4 pr-4 pt-2 pb-2">
         <div class="header__btn">
           <a class="control-btn" href="#" title="Inbox message" aria-label="All inbox message">
@@ -110,7 +110,25 @@
 
         <div id="startConversation" class="h-25 text-center w-100 pt-4 pb-1 border-top border-dark">
           <a id="newConversation" class=" btn btn-primary pl-5 pr-5" href="#" title="Create new conversation" aria-label="Create new conversation">
-            <span class="ti-plus"></span> New conversation
+            <span class="ti-plus"></span> New conversation (Get all user)
+          </a>
+          <a id="testCurrentUser" class=" btn btn-primary pl-5 pr-5" href="#" title="Create new conversation" aria-label="Create new conversation">
+            <span class="ti-archive"></span> Get current user
+          </a>
+          <a id="testUserById" class=" btn btn-primary pl-5 pr-5" href="#" title="Create new conversation" aria-label="Create new conversation">
+            <span class="ti-archive"></span> Get user by id
+          </a>
+          <a id="testAllThread" class=" btn btn-primary pl-5 pr-5" href="#" title="Create new conversation" aria-label="Create new conversation">
+            <span class="ti-archive"></span> GET Retrieve all threads
+          </a>
+          <a id="testAllMessage" class=" btn btn-primary pl-5 pr-5" href="#" title="Create new conversation" aria-label="Create new conversation">
+            <span class="ti-archive"></span> GET Retrieve all thread messages
+          </a>
+          <a id="testCreateThread" class=" btn btn-primary pl-5 pr-5" href="#" title="Create new conversation" aria-label="Create new conversation">
+            <span class="ti-archive"></span> POST Create a thread
+          </a>
+          <a id="testSendMessage" class=" btn btn-primary pl-5 pr-5" href="#" title="Create new conversation" aria-label="Create new conversation">
+            <span class="ti-archive"></span> POST Send message
           </a>
         </div>
       </div>
@@ -130,26 +148,6 @@
           <noscript>
             <h2 class="text-warning text-center">THIS ELEMENT DON'T WORK WITHOUT JAVASCRIPT</h2>
           </noscript>
-          <!--<img class="message__user&#45;&#45;photo" src="images/photo.png" alt="user photo">-->
-          <!--<h2 class="message__user&#45;&#45;name">Lyall Roach</h2>-->
-          <!--<h3 class="message__user&#45;&#45;position" id="position">UI/UX Designer</h3>-->
-          <!--<p class="message__user&#45;&#45;description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in.</p>-->
-          <!--<h3 class="message__user&#45;&#45;data">Email</h3>-->
-          <!--<a id="userEmail" class="message__user&#45;&#45;link" href="#" aria-label="'User name' email" title="email">-->
-            <!--some@email.com-->
-          <!--</a>-->
-          <!--<h3 class="message__user&#45;&#45;data">Phone</h3>-->
-          <!--<a id="userPhone" class="message__user&#45;&#45;link" href="#" aria-label="'User name' phone" title="phone">-->
-            <!--+38 (099) 888 77 66-->
-          <!--</a>-->
-          <!--<h3 class="message__user&#45;&#45;data">Address</h3>-->
-          <!--<a id="userAddress" class="message__user&#45;&#45;link" href="https://goo.gl/maps/Fe3SMUbBfVhKqyRV8" target="_blank" aria-label="'User name' address" title="address">-->
-            <!--Address go to google map-->
-          <!--</a>-->
-          <!--<h3 class="message__user&#45;&#45;data">Organization</h3>-->
-          <!--<a id="userOrganization" class="message__user&#45;&#45;link" href="#" aria-label="'User name' organization" title="organization">-->
-            <!--organization.web.site-->
-          <!--</a>-->
         </div>
       </div>
     </div>

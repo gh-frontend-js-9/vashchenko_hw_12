@@ -45,6 +45,7 @@ document.addEventListener('click', function(e) {
     }
     setInterval(autoLogin(sessionStorage.getItem('token')), 3000);
   }
+
   if (e.target.id === 'signSubmit') {
     let nameValid = validName(elementToId('name'));
     let emailValid = validEmail(elementToId('email'));
@@ -55,9 +56,10 @@ document.addEventListener('click', function(e) {
         "password": elementToId('password').value,
         "name": elementToId('name').value
       };
-      reqToServ.postData(usersURL, ContentType, AppJSON, sendData);
+      reqToServ.postData(usersURL, ContTYPE, AppJSON, sendData);
     }
   }
+
   if (e.target.id === 'resetSubmit') {
     let emailValid = validEmail(elementToId('email'));
     let passwordValid = validPassword(elementToId('password'), elementToId('confirmationPassword'));
@@ -67,10 +69,7 @@ document.addEventListener('click', function(e) {
         "confirmationPassword": elementToId('confirmationPassword').value,
         "email": elementToId('email').value
       };
-      reqToServ.postData(`${usersURL}reset_password`, ContentType, AppJSON, sendData)
+      reqToServ.postData(`${usersURL}reset_password`, ContTYPE, AppJSON, sendData)
     }
-  }
-  if (e.target.id === 'test') {
-      reqToServ.getData(`${usersURL}`, ContentType, AppJSON, sendData)
   }
 });

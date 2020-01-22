@@ -15,7 +15,6 @@ export class RequestToServer {
     requestHeader.append(headerName, headerValue);
     let requestData = JSON.stringify(data);
 
-
     let requestOptions = {
       method: POST,
       headers: requestHeader,
@@ -26,7 +25,7 @@ export class RequestToServer {
     fetchData(url, requestOptions, rememberMe);
   }
 
-  getData(url, headerName, headerValue, redirectPage, rememberMe) {
+  getData(url, headerName, headerValue, redirectPage) {
     if (!headerName) {
       headerName = ContTYPE;
     }
@@ -45,26 +44,30 @@ export class RequestToServer {
       redirect: redirectPage
     };
 
-    fetchData(url, requestOptions, rememberMe);
+    fetchDataGet(url, requestOptions);
   }
 }
 
 function fetchData(url, requestOptions, rememberMe) {
   fetch(url, requestOptions)
-    .then((respons) => {
-      console.log(respons);
-      console.log(respons['_id']);
-      sessionStorage.setItem('token', respons.headers.get('X-Auth-Token'));
+    .then(response => {
+      sessionStorage.setItem('token', response.headers.get('X-Auth-Token'));
       if (rememberMe) {
-        localStorage.setItem('token', respons.headers.get('X-Auth-Token'));
+        localStorage.setItem('token', response.headers.get('X-Auth-Token'));
       }
-      return respons.json();
-    }).then((result) => {
-    console.log("User data Fetch: " + result);
-    return result;
-  }).catch((error) =>{
-    console.log(error);
-  });
+      return response.json()
+    })
+    .then(result => result)
+    .catch(error => console.log('Error in fetchData: ', error));
+}
+
+function fetchDataGet(url, requestOptions) {
+  fetch(url, requestOptions)
+    .then(response => {
+      return response.json()
+    })
+    .then(result => result)
+    .catch(error => console.log('Error in fetchData: ', error));
 }
 
 export function autoLogin(token) {
@@ -75,21 +78,19 @@ export function autoLogin(token) {
         'X-Access-Token': token,
       }
     }).then((respons) => {
-      console.log(respons);
       return respons.json();
     }).then((user) => {
-      console.log("User data: " + user);
-      console.log("User data: " + user.name);
-      console.log("User data: " + user._id);
-      console.log("User data: " + user.email);
+      console.log("User name: " + user.name);
+      console.log("User id: " + user._id);
+      console.log("User email: " + user.email);
       window.location.href = 'home.html';
       return true
-    }).catch((error) =>{
-      console.log(error);
+    }).catch((error) => {
+      console.log("Error autoLogin "+ error);
       window.location.href = 'index.html';
       return false
     });
   } else {
-    // window.location.replace('index.html')
+    // window.location.href = 'index.html'
   }
 }

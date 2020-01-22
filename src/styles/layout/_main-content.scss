@@ -4,12 +4,11 @@
   height: 90%;
 }
 
-.menu-params {
-  height: rem(80px, $fontSize);
-  min-width: 100%;
-  background-color: $warning-color;
-  &__filter {
-    width: rem(320, $fontSize);
+
+.content {
+  height: 100%;
+  &-menu {
+    height: 15%;
   }
 }
 
