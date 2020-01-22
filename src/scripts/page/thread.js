@@ -1,11 +1,15 @@
 import {RequestToServer} from "../request/requests";
 import {AccessTOKEN, AppJSON, ContTYPE, threadURL, usersURL} from "../variable/variables";
+import {CreateElement} from "../func/createElement";
 
 let getUser = new RequestToServer();
 // GET DATA
 document.addEventListener('click', function(e) {
   if (e.target.id === 'newConversation') {
     getUser.getData(`${usersURL}all`, AccessTOKEN, sessionStorage.getItem('token'));
+    renderConversation();
+    takeMessage();
+    outMessage();
   }
   if (e.target.id === 'testCurrentUser') {
     getUser.getData(usersURL, AccessTOKEN, sessionStorage.getItem('token'));
@@ -42,5 +46,78 @@ document.addEventListener('click', function(e) {
   }
 });
 
-
 // Render elements
+let createElement = new CreateElement();
+
+function renderConversation () {
+  createElement.addNewElement(
+    {id: 'listConversation'},
+    'li',
+    {id: `(Set_user_id)`, 'class': 'message__conversation-user border-bottom border-dark p-3'}
+  );
+  createElement.addNewElement(
+    {id: `(Set_user_id)`},
+    'div',
+    {id: `(DIV-Set_user_id)`, 'class': 'd-flex flex-row justify-content-between'}
+  );
+      createElement.addNewElement(
+        {id: `(DIV-Set_user_id)`},
+        'p',
+        {'class': 'text-white'},
+        'USER NAME (Micle Stewart)'
+      );
+      createElement.addNewElement(
+        {id: `(DIV-Set_user_id)`},
+        'p',
+        {'class': 'text-primary'},
+        'Date (Today, 5:332 PM)'
+      );
+
+  createElement.addNewElement(
+    {id: `(Set_user_id)`},
+    'p',
+    {'class': 'text-light'},
+    'TAKE SHORT DESCRIPTION ON SERVER RESPONSE DATA'
+  );
+}
+
+function takeMessage() {
+  createElement.addNewElement(
+    {id: 'threadList'},
+    'div',
+    {id: 'incomingMessageId', 'class': 'message__thread-incoming d-flex align-items-center flex-row w-100'},
+    `<div>
+      <img src="images/photo.png" title="SET URL ON USER PHOTO IN RESPONSE" alt="User name" aria-label="User name photo">
+    </div>
+    <div class="ml-3">
+      <p class="mr-auto message__thread-incoming--text text-white w-75 p-3 text-left">
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+        ut aliquip ulla pariatur. est laborum. Sed ut perspiciatis unde omnis iste natus error sit
+        voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
+        inventore veritatis et quasi architecto beatae.
+      </p>
+      <p class="text-secondary">(Date in response) 4 April 2016, 5:32 PM</p>
+    </div>`
+  )
+}
+
+
+function outMessage() {
+  createElement.addNewElement(
+    {id: 'threadList'},
+    'div',
+    {id: 'outgoingMessageId', 'class': 'message__thread-outgoing d-flex align-items-center flex-row-reverse w-100'},
+    `<div>
+      <img src="images/photo.png" title="SET URL ON USER PHOTO IN RESPONSE" alt="User name" aria-label="User name photo">
+    </div>
+    <div class="ml-3">
+      <p class="ml-auto message__thread-outgoing--text text-white w-75 p-3 text-right">
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+        ut aliquip ulla pariatur. est laborum. Sed ut perspiciatis unde omnis iste natus error sit
+        voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
+        inventore veritatis et quasi architecto beatae.
+      </p>
+      <p class="text-secondary text-right">(Date in response) 4 April 2016, 5:32 PM</p>
+    </div>`
+  )
+}
