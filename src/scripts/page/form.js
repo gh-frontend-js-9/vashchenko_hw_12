@@ -41,9 +41,18 @@ document.addEventListener('click', function(e) {
         "email": elementToId('email').value,
         "password": elementToId('password').value
       };
-      reqToServ.postData(`${usersURL}login`, ContTYPE, AppJSON, sendData, '',rememberMe);
+      reqToServ.postData(
+        `${usersURL}login`,
+        ContTYPE,
+        AppJSON,
+        sendData,
+        '',
+        '',
+        rememberMe
+      );
     }
-    setInterval(autoLogin(sessionStorage.getItem('token')), 3000);
+
+    setInterval(() => autoLogin(sessionStorage.getItem('token')), 1500);
   }
 
   if (e.target.id === 'signSubmit') {
@@ -58,6 +67,7 @@ document.addEventListener('click', function(e) {
       };
       reqToServ.postData(usersURL, ContTYPE, AppJSON, sendData);
     }
+    setTimeout(() => window.location.href = 'index.html', 2000);
   }
 
   if (e.target.id === 'resetSubmit') {
@@ -71,5 +81,6 @@ document.addEventListener('click', function(e) {
       };
       reqToServ.postData(`${usersURL}reset_password`, ContTYPE, AppJSON, sendData)
     }
+    window.location.href = 'index.html';
   }
 });

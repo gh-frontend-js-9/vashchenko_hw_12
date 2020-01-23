@@ -12,7 +12,7 @@ document.addEventListener('click', function(e) {
     outMessage();
   }
   if (e.target.id === 'testCurrentUser') {
-    getUser.getData(usersURL, AccessTOKEN, sessionStorage.getItem('token'));
+    getUserProfile(getUser.getData(usersURL, AccessTOKEN, sessionStorage.getItem('token')));
   }
   if (e.target.id === 'testUserById') {
     //Error how take data on this.user?
@@ -49,7 +49,8 @@ document.addEventListener('click', function(e) {
 // Render elements
 let createElement = new CreateElement();
 
-function renderConversation () {
+function renderConversation() {
+
   createElement.addNewElement(
     {id: 'listConversation'},
     'li',
@@ -103,9 +104,15 @@ function outMessage() {
   )
 }
 
-function getUserProfile () {
+export function getUserProfile (data) {
+  console.log(`DATA IN FUNCTION ${data}`);
   createElement.addNewElement(
     {id: 'userProfile'},
-
+    'div',
+    {id: 'userProfileCard', 'class': 'message__user--card d-flex flex-column text-center align-items-center'},
+    `<img class="message__user--photo" src="images/photo.png" alt="user photo">
+      <h2 class="message__user--name">USER NAME</h2>
+      <h3 class="message__user--position" id="position">POSITION</h3>
+      <p class="message__user--description">TEXT.</p>`
   )
 }

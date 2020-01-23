@@ -1,7 +1,7 @@
 import {GET, POST, ContTYPE, AppJSON, DefREDIRECT, usersURL} from "../variable/variables";
 
 export class RequestToServer {
-  postData(url, headerName, headerValue, data, redirectPage, rememberMe) {
+  postData(url, headerName, headerValue, data, callback, redirectPage, rememberMe) {
     if (!headerName) {
       headerName = ContTYPE;
     }
@@ -22,10 +22,10 @@ export class RequestToServer {
       redirect: redirectPage
     };
 
-    fetchData(url, requestOptions, rememberMe);
+    fetchData(url, requestOptions, callback, rememberMe);
   }
 
-  getData(url, headerName, headerValue, redirectPage) {
+  getData(url, headerName, headerValue, callback, redirectPage) {
     if (!headerName) {
       headerName = ContTYPE;
     }
@@ -43,13 +43,12 @@ export class RequestToServer {
       headers: requestHeader,
       redirect: redirectPage
     };
-
-    fetchDataGet(url, requestOptions);
+    return fetchDataGet(url, requestOptions, callback);
   }
 }
 
-function fetchData(url, requestOptions, rememberMe) {
-  fetch(url, requestOptions)
+function fetchData(url, requestOptions, callback, rememberMe) {
+  return fetch(url, requestOptions)
     .then(response => {
       sessionStorage.setItem('token', response.headers.get('X-Auth-Token'));
       if (rememberMe) {
@@ -57,15 +56,14 @@ function fetchData(url, requestOptions, rememberMe) {
       }
       return response.json()
     })
-    .then(result => result)
+    .then(result => callback(result))
     .catch(error => console.log('Error in fetchData: ', error));
 }
 
+
 function fetchDataGet(url, requestOptions) {
-  fetch(url, requestOptions)
-    .then(response => {
-      return response.json()
-    })
+  return fetch(url, requestOptions)
+    .then(response => response.json())
     .then(result => result)
     .catch(error => console.log('Error in fetchData: ', error));
 }
