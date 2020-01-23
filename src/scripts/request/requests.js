@@ -77,12 +77,11 @@ export function autoLogin(token) {
       headers: {
         'X-Access-Token': token,
       }
-    }).then((respons) => {
-      return respons.json();
-    }).then((user) => {
-      console.log("User name: " + user.name);
-      console.log("User id: " + user._id);
-      console.log("User email: " + user.email);
+    }).then((respons) => respons.json())
+      .then((user) => {
+      localStorage.setItem("myName", user.name);
+      localStorage.setItem("myId", user._id);
+      localStorage.setItem("myEmail", user.email);
       window.location.href = 'home.html';
       return true
     }).catch((error) => {
@@ -90,7 +89,5 @@ export function autoLogin(token) {
       window.location.href = 'index.html';
       return false
     });
-  } else {
-    // window.location.href = 'index.html'
   }
 }

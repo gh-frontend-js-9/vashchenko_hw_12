@@ -26,12 +26,12 @@ import './scripts/page/thread.js'
 let status = false;
 
 if (!status) {
-  if (window.location.pathname === 'signup.html' || window.location.pathname === 'reset.html' ) {
+  if (window.location.pathname === '/signup.html' || window.location.pathname === '/reset.html' ) {
     status = true;
   } else if (sessionStorage.getItem('token')  === null &&
       localStorage.getItem('token')  === null &&
       window.location.pathname !== '/index.html') {
-    // window.location.href = 'index.html';
+    window.location.href = 'index.html';
   } else if (sessionStorage.getItem('token')  === null) {
     console.log(window.location.pathname);
     console.log('status 2');
