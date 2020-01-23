@@ -80,18 +80,8 @@ export class CreateElement {
     createElement({id: out}, 'img', {id: id, class: cssClass, src: src, alt: alt});
   }
 
-  addInput(
-    out,
-    id,
-    inputName,
-    type,
-    value,
-    placeholder,
-    cssClassInput,
-    cssClassLable,
-    lableText,
-    inputStyle,
-    lableStyle){
+  addInput(out, id, inputName, type, value, placeholder, cssClassInput, cssClassLable, lableText, inputStyle, lableStyle)
+  {
     createElement({id: out}, 'label', {for: id, class: cssClassLable}, lableText, lableStyle);
     createElement({id: out}, 'input', {id: id, name: inputName, type: type, class: cssClassInput, placeholder: placeholder, value: value},'',inputStyle)
   }
