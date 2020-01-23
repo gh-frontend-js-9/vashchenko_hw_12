@@ -6,6 +6,9 @@
   &__btn {
     @include flex('', space-between, center);
     width: rem(420px, $fontSize);
+    & a{
+      display: inline-block;
+    }
     &--photo {
       width: 100%;
       max-width: rem(56, $fontSize);

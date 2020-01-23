@@ -78,32 +78,8 @@ module.exports = {
     }),
     new htmlWebpackPlug({
       favicon: './src/assets/images/favicon.png',
-      filename: 'signup.html',
-      template: path.join(__dirname, 'src/pages', 'signup.html'),
-      hash: true,
-    }),
-    new htmlWebpackPlug({
-      favicon: './src/assets/images/favicon.png',
-      filename: 'reset.html',
-      template: path.join(__dirname, 'src/pages', 'reset.html'),
-      hash: true,
-    }),
-    new htmlWebpackPlug({
-      favicon: './src/assets/images/favicon.png',
-      filename: 'home.html',
+      filename: 'app.html',
       template: path.join(__dirname, 'src/pages', 'home.html'),
-      hash: true
-    }),
-    new htmlWebpackPlug({
-      favicon: './src/assets/images/favicon.png',
-      filename: 'thread-html.html',
-      template: path.join(__dirname, 'src/pages', 'thread-html.html'),
-      hash: true
-    }),
-    new htmlWebpackPlug({
-      favicon: './src/assets/images/favicon.png',
-      filename: 'thread.html',
-      template: path.join(__dirname, 'src/pages', 'thread.html'),
       hash: true
     })
   ]

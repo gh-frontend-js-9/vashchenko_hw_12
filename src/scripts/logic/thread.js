@@ -106,6 +106,9 @@ function outMessage() {
 
 export function getUserProfile (data) {
   console.log(`DATA IN FUNCTION ${data}`);
+  console.log(data);
+  console.log(`DATA IN FUNCTION ${data.position}`);
+
   createElement.addNewElement(
     {id: 'userProfile'},
     'div',

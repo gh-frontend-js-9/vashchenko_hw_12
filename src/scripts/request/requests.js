@@ -60,7 +60,6 @@ function fetchData(url, requestOptions, callback, rememberMe) {
     .catch(error => console.log('Error in fetchData: ', error));
 }
 
-
 function fetchDataGet(url, requestOptions) {
   return fetch(url, requestOptions)
     .then(response => response.json())
@@ -80,12 +79,10 @@ export function autoLogin(token) {
       localStorage.setItem("myName", user.name);
       localStorage.setItem("myId", user._id);
       localStorage.setItem("myEmail", user.email);
-      window.location.href = 'home.html';
-      return true
-    }).catch((error) => {
-      console.log("Error autoLogin "+ error);
+      window.location.href = 'app.html';
+      }).catch((error) => {
+      console.error("Error autoLogin "+ error);
       window.location.href = 'index.html';
-      return false
     });
   }
 }
