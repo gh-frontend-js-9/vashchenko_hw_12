@@ -1,5 +1,25 @@
 'use strict';
 
+export function deleteElement (out) {
+  let parent = document.getElementsByTagName('BODY')[0];
+
+  if (out) {
+    for (let key in out) {
+      let elemKey = out[key];
+      if (key === 'tag') {
+        parent = document.getElementsByTagName(elemKey);
+      } else if (key === 'id') {
+        parent = document.getElementById(elemKey);
+      } else if (key === 'class'){
+        parent = document.getElementsByClassName(elemKey);
+      } else {
+        parent = document.querySelector(elemKey);
+      }
+    }
+  }
+  return parent.innerHTML = '';
+}
+
 function createElement (out, name, attr, text, style) {
   let parent = document.getElementsByTagName('BODY')[0];
   let element = document.createElement(name);
@@ -61,16 +81,27 @@ export class CreateElement {
   }
 
   addInput(
-    out, id,
-    inputName, type, value, placeholder,
-    cssClassInput, cssClassLable,
-    lableText, inputStyle, lableStyle){
+    out,
+    id,
+    inputName,
+    type,
+    value,
+    placeholder,
+    cssClassInput,
+    cssClassLable,
+    lableText,
+    inputStyle,
+    lableStyle){
     createElement({id: out}, 'label', {for: id, class: cssClassLable}, lableText, lableStyle);
     createElement({id: out}, 'input', {id: id, name: inputName, type: type, class: cssClassInput, placeholder: placeholder, value: value},'',inputStyle)
   }
 
   addNewElement(out, name, attr, text, style){
     createElement(out, name, attr, text, style);
+  }
+
+  delete(out) {
+    deleteElement(out);
   }
 }
 

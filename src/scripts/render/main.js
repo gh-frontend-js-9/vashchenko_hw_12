@@ -1,4 +1,4 @@
-import * as LoginsForms from './login-form';
-import './home_page';
-
-export const Form = LoginsForms;
+export * from './login-form';
+export * from './home-page';
+export * from './thread-page';
+export * from './thread-html';

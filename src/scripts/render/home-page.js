@@ -2,7 +2,8 @@ import {CreateElement} from "../func/createElement";
 
 let createElement = new CreateElement();
 
-export function renderHomePage () {
+export function homePageContent () {
+  createElement.delete({id: 'content'});
   createElement.addNewElement({id: 'content'},'div',{'class': 'content-menu d-flex flex-column col-md-12 p-0'},
     `<div class="d-flex flex-row justify-content-center align-items-center align-content-center">
       <div id="">
