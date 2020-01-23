@@ -18,6 +18,12 @@ export function init() {
 }
 
 document.addEventListener('click', function(e) {
+
+  // Подія для елементу на сторінці (./pages/home.html)
+  if (e.target.id === 'searchHeaderBtn') {
+    renderHomePage();
+  }
+
   if (e.target.id === 'homePageRender') {
     renderHomePage();
   }
