@@ -1,5 +1,7 @@
 import * as LoginVerification from "../logic/form";
 import * as Render from "../render/main";
+import {AccessTOKEN, usersURL} from "../variable/variables";
+import {newConversation} from "../logic/thread";
 
 document.addEventListener('click', function(e) {
 // Render LOGIN Form Start
@@ -29,7 +31,7 @@ document.addEventListener('click', function(e) {
   }
 // User verification action END
 
-// User verification action END
+// Render page action END
   if (e.target.id === 'headerLogoImg' || e.target.id === 'homePage') {
     Render.homePageContent();
   }
@@ -39,6 +41,15 @@ document.addEventListener('click', function(e) {
   if (e.target.id === 'threadHTMLPage') {
     Render.threadHtmlPage();
   }
-// User verification action END
+  if (e.target.id === 'threadHTMLPage') {
+    Render.threadHtmlPage();
+  }
+  if (e.target.id === 'threadHTMLPage') {
+    Render.threadHtmlPage();
+  }
+// Render page action END
+  if (e.target.id === 'newConversation') {
+    newConversation();
+  }
 
 });

@@ -80,3 +80,49 @@ export function threadPageContent() {
     </noscript>`
   );
 }
+
+export function allUsers(data) {
+
+  createElement.delete({id: 'threadList'});
+
+  for (let i = 0; data.length >i; i++){
+    let userData = data[i];
+    let separateClass = '';
+    if (i%2 === 0) {
+      separateClass = 'conversation__separate'
+    }
+
+    createElement.addNewElement(
+      {id: 'threadList'},
+      'div',
+      {id: `${userData['_id']}`, 'class': `conversation__allusers ${separateClass}`},
+      `<ul>
+           <li class="text-white">${userData['name']}</li>
+           <li class="text-white">${userData['position']}</li>
+           <li class="text-white">${userData['organization']}</li>
+         </ul>
+         <ul class="d-flex justify-content-around flex-column">
+           <li>
+             <a title="Send mail to ${userData['email']}" 
+                href="mailto:${userData['email']}" 
+                target="_blank">
+                  ${userData['email']}
+             </a>
+           </li>
+           <li>
+             <a title="Call to ${userData['phone']}" 
+                href="tel:${userData['phone']}">
+                  ${userData['phone']}
+             </a>
+           </li>
+           <li>
+             <a title="View address on map ${userData['address']}" 
+                href="https://maps.google.com/maps?q=${userData['address'].split(' ').join('%')}"
+                target="_blank">
+                  ${userData['address']}
+             </a>
+           </li>
+         </ul>`
+    );
+  }
+}

@@ -11,9 +11,18 @@ export class RequestToServer {
     if (!redirectPage) {
       redirectPage = DefREDIRECT;
     }
+
     let requestHeader = new Headers();
-    requestHeader.append(headerName, headerValue);
     let requestData = JSON.stringify(data);
+
+
+    if (Array.isArray(headerName) === true && Array.isArray(headerValue)) {
+      for (let i=0; headerName.length > i; i++) {
+        requestHeader.append(headerName[i], headerValue[i]);
+      }
+    } else {
+      requestHeader.append(headerName, headerValue);
+    }
 
     let requestOptions = {
       method: POST,
@@ -36,8 +45,15 @@ export class RequestToServer {
       redirectPage = DefREDIRECT;
     }
     let requestHeader = new Headers();
-    requestHeader.append(headerName, headerValue);
 
+    if (Array.isArray(headerName) === true && Array.isArray(headerValue)) {
+      for (let i=0; headerName.length > i; i++) {
+        requestHeader.append(headerName[i], headerValue[i]);
+      }
+    } else {
+      requestHeader.append(headerName, headerValue);
+    }
+    
     let requestOptions = {
       method: GET,
       headers: requestHeader,
@@ -60,10 +76,10 @@ function fetchData(url, requestOptions, callback, rememberMe) {
     .catch(error => console.log('Error in fetchData: ', error));
 }
 
-function fetchDataGet(url, requestOptions) {
+function fetchDataGet(url, requestOptions, callback) {
   return fetch(url, requestOptions)
     .then(response => response.json())
-    .then(result => result)
+    .then(callback)
     .catch(error => console.log('Error in fetchData: ', error));
 }
 

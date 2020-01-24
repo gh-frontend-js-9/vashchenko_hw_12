@@ -1,30 +1,32 @@
 import {RequestToServer} from "../request/requests";
 import {AccessTOKEN, AppJSON, ContTYPE, threadURL, usersURL} from "../variable/variables";
 import {CreateElement} from "../func/createElement";
+import {allUsers, allUsersConversation} from "../render/thread-page";
 
 let getUser = new RequestToServer();
+
 // GET DATA
 document.addEventListener('click', function(e) {
-  if (e.target.id === 'newConversation') {
-    getUser.getData(`${usersURL}all`, AccessTOKEN, sessionStorage.getItem('token'));
-    renderConversation();
-    takeMessage();
-    outMessage();
-  }
+
+
   if (e.target.id === 'testCurrentUser') {
     getUserProfile(getUser.getData(usersURL, AccessTOKEN, sessionStorage.getItem('token')));
   }
+
   if (e.target.id === 'testUserById') {
     //Error how take data on this.user?
     getUser.getData(`${usersURL}${this.user.id}`, AccessTOKEN, sessionStorage.getItem('token'));
   }
+
   if (e.target.id === 'testAllThread') {
     getUser.getData(threadURL, AccessTOKEN, sessionStorage.getItem('token'));
   }
+
   if (e.target.id === 'testAllMessage') {
     // HOW SAVE AND TAKE THREAD DATE
     getUser.getData(`${threadURL}${this.threadId}`, AccessTOKEN, sessionStorage.getItem('token'));
   }
+
   if (e.target.id === 'testCreateThread') {
     // HOW SEND 2 headers myHeaders
     getUser.postData(threadURL, [AccessTOKEN, ContTYPE], [sessionStorage.getItem('token'), AppJSON],
@@ -34,6 +36,7 @@ document.addEventListener('click', function(e) {
         }
       }));
   }
+
   if (e.target.id === 'testSendMessage') {
     getUser.postData(`${threadURL}messages`, [AccessTOKEN, ContTYPE], [sessionStorage.getItem('token'), AppJSON],
         ` "thread": {
@@ -44,6 +47,7 @@ document.addEventListener('click', function(e) {
         }`
       );
   }
+
 });
 
 // Render elements
@@ -63,7 +67,12 @@ function renderConversation() {
   );
 }
 
+export function newConversation() {
+  getUser.getData(`${usersURL}all`, AccessTOKEN, sessionStorage.getItem('token'), (data) => allUsers(data));
+}
+
 function takeMessage() {
+
   createElement.addNewElement(
     {id: 'threadList'},
     'div',
@@ -85,6 +94,7 @@ function takeMessage() {
 
 
 function outMessage() {
+
   createElement.addNewElement(
     {id: 'threadList'},
     'div',
@@ -105,9 +115,6 @@ function outMessage() {
 }
 
 export function getUserProfile (data) {
-  console.log(`DATA IN FUNCTION ${data}`);
-  console.log(data);
-  console.log(`DATA IN FUNCTION ${data.position}`);
 
   createElement.addNewElement(
     {id: 'userProfile'},
