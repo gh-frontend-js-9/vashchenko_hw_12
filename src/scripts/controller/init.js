@@ -12,5 +12,7 @@ export function init() {
   } else if (window.location.pathname === '/' && localStorage.getItem('token') !== null ||
     window.location.pathname === '/index.html' && localStorage.getItem('token') !== null) {
     autoLogin(localStorage.getItem('token'));
+  } else if (window.location.pathname === '/app.html' && localStorage.getItem('myId') !== null) {
+    window.document.onload = Render.homePageContent();
   }
 }

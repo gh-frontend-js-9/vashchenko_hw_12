@@ -56,8 +56,8 @@ export function threadHtmlPage() {
             incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
         </li>
       </ul>
-      <div id="startConversation" class="h-25 text-center w-100 pt-4 pb-1 border-top border-dark">
-        <a id="newConversation" class=" btn btn-primary pl-5 pr-5" href="#" title="Create new conversation" aria-label="Create new conversation">
+      <div class="h-25 text-center w-100 pt-4 pb-1 border-top border-dark">
+        <a class=" btn btn-primary pl-5 pr-5" href="#" title="Create new conversation" aria-label="Create new conversation">
           <span class="ti-plus"></span> New conversation
         </a>
       </div>

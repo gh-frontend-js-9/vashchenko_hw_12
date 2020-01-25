@@ -72,8 +72,8 @@ export class CreateElement {
     createElement({id: out}, 'div', {id: id, class: cssClass}, text, style);
   }
 
-  addLink(out, id, cssClass, href, title, ariaLabel, text, style) {
-    createElement({id: out}, 'a', {id: id, class: cssClass, href: href, title: title, 'aria-label': ariaLabel}, text, style);
+  addLink(out, id, cssClass, href, title, ariaLabel, text, style, target) {
+    createElement({id: out}, 'a', {id: id, class: cssClass, href: href, title: title, 'aria-label': ariaLabel, target: target}, text, style);
   }
 
   addImage(out, id, cssClass, src, alt) {

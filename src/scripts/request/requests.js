@@ -53,7 +53,7 @@ export class RequestToServer {
     } else {
       requestHeader.append(headerName, headerValue);
     }
-    
+
     let requestOptions = {
       method: GET,
       headers: requestHeader,

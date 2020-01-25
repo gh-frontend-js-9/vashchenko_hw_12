@@ -1,7 +1,7 @@
 import * as LoginVerification from "../logic/form";
+import * as Thread from "../logic/thread";
 import * as Render from "../render/main";
-import {AccessTOKEN, usersURL} from "../variable/variables";
-import {newConversation} from "../logic/thread";
+import {elementToId} from "../func/elementToID";
 
 document.addEventListener('click', function(e) {
 // Render LOGIN Form Start
@@ -37,19 +37,29 @@ document.addEventListener('click', function(e) {
   }
   if (e.target.id === 'threadPage') {
     Render.threadPageContent();
-  }
-  if (e.target.id === 'threadHTMLPage') {
-    Render.threadHtmlPage();
-  }
-  if (e.target.id === 'threadHTMLPage') {
-    Render.threadHtmlPage();
+    Thread.allThreads();
   }
   if (e.target.id === 'threadHTMLPage') {
     Render.threadHtmlPage();
   }
 // Render page action END
   if (e.target.id === 'newConversation') {
-    newConversation();
+    Thread.newCoversation();
   }
 
+});
+
+
+document.addEventListener('dblclick', function (e) {
+  if (e.target.closest('div').id !== null && e.target.closest('#usersList') !== null) {
+    Thread.newUserCoversetion(e.target.closest('div').id);
+  }
+  if (e.target.closest('#listConversation') !== null) {
+    let threadId = e.target.closest('li').id;
+    let coversUserId = e.target.closest('li[data-user-id]').dataset.userId;
+      Thread.allThreadsMessage(threadId, coversUserId);
+  }
+  // if (elementToId(e.target.id).parentNode.id === 'listConversation') {
+  //   Thread.allThreadsMessage(e.target.id);
+  // }
 });

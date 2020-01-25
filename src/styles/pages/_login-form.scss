@@ -1,6 +1,4 @@
 .login {
-  background: url('https://media1.giphy.com/media/l3vQXKPdzpShJtTCE/giphy.gif?cid=790b76113e089eccba1d6305755fe8c802540e07e2968173&rid=giphy.gif') no-repeat;
-  background-size: cover;
   height: 100%;
   font-family: 'Numans', sans-serif;
   &__card {
@@ -8,6 +6,6 @@
     min-width: rem(500px, $fontSize);
     margin-top: auto;
     margin-bottom: auto;
-    background-color: rgba($background-color, 0.5);
+    background-color: $background-row-1;
   }
 }
