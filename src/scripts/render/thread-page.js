@@ -218,7 +218,7 @@ function outMessage(data) {
            <p class="text-center text-white">${myName}</p>
     </div>
     <div class="ml-3">
-      <p class="ml-auto message__thread-outgoing--text text-white w-75 p-3 text-right">
+      <p class="ml-auto mr-3 message__thread-outgoing--text text-white w-75 p-3 text-right">
        ${messageText}
       </p>
       <p class="text-secondary text-right">${createdDate}</p>
