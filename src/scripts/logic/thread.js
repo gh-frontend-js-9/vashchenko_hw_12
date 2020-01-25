@@ -1,7 +1,8 @@
 import {RequestToServer} from "../request/requests";
 import {AccessTOKEN, AppJSON, ContTYPE, threadURL, usersURL} from "../variable/variables";
-import {CreateElement} from "../func/createElement";
 import * as Render from "../render/thread-page";
+import {elementToId} from "../func/elementToID";
+import {CreateElement} from "../func/createElement";
 
 let Request = new RequestToServer();
 
@@ -31,27 +32,33 @@ export function allThreadsMessage(threadId, userId) {
   Request.getData(`${usersURL}${userId}`, AccessTOKEN, tokenCheck(), (data) => Render.userProfile(data));
 }
 
+export function createNewThread(userId) {
+  Request.postData(
+    threadURL,
+    [AccessTOKEN, ContTYPE], [tokenCheck(), AppJSON],
+    {"user" : {"_id":`${userId}`}},
+    (data) => console.log(data)
+  );
+  setTimeout(() => Request.getData(threadURL, AccessTOKEN, tokenCheck(), (data) => Render.threadUser(data)), 700);
+}
 
-// GET DATA
-document.addEventListener('click', function(e) {
+export function sendMessage(message) {
+  let threadId = sessionStorage.getItem('currentThread');
+  let userId = sessionStorage.getItem('currentThreadUser');
+  Request.postData(
+    `${threadURL}/messages`,
+    [AccessTOKEN, ContTYPE], [tokenCheck(), AppJSON],
+    {
+      "thread": {
+        "_id": `${threadId}`
+      },
+      "message": {
+        "body": message
+      }
+    },
+    (data) => console.log(data)
+  );
 
-  if (e.target.id === 'testCreateThread') {
-    getUser.postData(threadURL, [AccessTOKEN, ContTYPE], [sessionStorage.getItem('token'), AppJSON],
-      SendData({
-        "user" : {
-          "_id":"5e19c223a4199c002275268a"
-        }
-      }));
-  }
-
-  if (e.target.id === 'testSendMessage') {
-    getUser.postData(`${threadURL}messages`, [AccessTOKEN, ContTYPE], [sessionStorage.getItem('token'), AppJSON],
-        ` "thread": {
-          "_id": "5e1a1c818ec2f49ab3e59ab2"
-        },
-        "message": {
-          "body": "How are you?"
-        }`
-      );
-  }
-});
+  setTimeout(() => Request.getData(`${threadURL}/messages/${threadId}`, AccessTOKEN, tokenCheck(), (data) => Render.threadMessages(data)), 700);
+  setTimeout(() => Request.getData(`${usersURL}${userId}`, AccessTOKEN, tokenCheck(), (data) => Render.userProfile(data)), 700);
+}

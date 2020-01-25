@@ -2,6 +2,7 @@ import * as LoginVerification from "../logic/form";
 import * as Thread from "../logic/thread";
 import * as Render from "../render/main";
 import {elementToId} from "../func/elementToID";
+import {sendMessage} from "../logic/thread";
 
 document.addEventListener('click', function(e) {
 // Render LOGIN Form Start
@@ -38,6 +39,9 @@ document.addEventListener('click', function(e) {
   if (e.target.id === 'threadPage') {
     Render.threadPageContent();
     Thread.allThreads();
+    if (sessionStorage.getItem('currentThread') !== null && sessionStorage.getItem('currentThreadUser') !== null) {
+      setTimeout(() => Thread.allThreadsMessage(sessionStorage.getItem('currentThread'), sessionStorage.getItem('currentThreadUser')), 1000);
+    }
   }
   if (e.target.id === 'threadHTMLPage') {
     Render.threadHtmlPage();
@@ -53,13 +57,24 @@ document.addEventListener('click', function(e) {
 document.addEventListener('dblclick', function (e) {
   if (e.target.closest('div').id !== null && e.target.closest('#usersList') !== null) {
     Thread.newUserCoversetion(e.target.closest('div').id);
+    Thread.createNewThread(e.target.closest('div').id);
   }
   if (e.target.closest('#listConversation') !== null) {
     let threadId = e.target.closest('li').id;
     let coversUserId = e.target.closest('li[data-user-id]').dataset.userId;
       Thread.allThreadsMessage(threadId, coversUserId);
+      sessionStorage.setItem('currentThread', threadId);
+      sessionStorage.setItem('currentThreadUser', coversUserId);
   }
-  // if (elementToId(e.target.id).parentNode.id === 'listConversation') {
-  //   Thread.allThreadsMessage(e.target.id);
-  // }
+});
+
+document.addEventListener('keypress', function(e) {
+  if (sessionStorage.getItem('currentThread') !== null && e.target.id === 'messageText' && e.keyCode === 13) {
+    if (elementToId('messageText').value.split(' ').join('') === '') {
+      setTimeout(() => elementToId('messageText').value = '', 300);
+    } else {
+      sendMessage(elementToId('messageText').value);
+      setTimeout(() => elementToId('messageText').value = '', 300);
+    }
+  }
 });
