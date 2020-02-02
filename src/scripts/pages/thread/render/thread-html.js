@@ -1,4 +1,4 @@
-import {CreateElement} from "../func/createElement";
+import {CreateElement} from "../../../func/createElement";
 
 let createElement = new CreateElement();
 

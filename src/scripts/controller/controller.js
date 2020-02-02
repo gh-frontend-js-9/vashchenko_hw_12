@@ -1,41 +1,59 @@
-import * as LoginVerification from "../logic/form";
-import * as Thread from "../logic/thread";
-import * as Render from "../render/main";
+import * as LoginVerification from "../pages/login-pages/logic/form";
+import * as Thread from "../pages/thread/logic/thread";
+import * as Statistic from "../pages/stat/logic/stats";
+import * as Render from "../pages/main";
 import {elementToId} from "../func/elementToID";
-import {sendMessage} from "../logic/thread";
+import {sendMessage} from "../pages/thread/logic/thread";
 
 document.addEventListener('click', function(e) {
-// Render LOGIN Form Start
   if (e.target.id === 'logIn') {
     Render.loginForm();
   }
+
   if (e.target.id === 'signUp') {
     Render.signUpForm();
   }
+
   if (e.target.id === 'resetPassword') {
     Render.resetForm();
   }
-// Render LOGIN Form Start
 
-// User verification action START
   if (e.target.id === 'logInSubmit') {
     LoginVerification.logIn();
   }
+
   if (e.target.id === 'signSubmit') {
     LoginVerification.signUp();
   }
+
   if (e.target.id === 'resetSubmit') {
     LoginVerification.resetPassword();
   }
+
   if (e.target.id === 'logOutHeaderBtn') {
     LoginVerification.logOut();
   }
-// User verification action END
 
-// Render page action END
   if (e.target.id === 'headerLogoImg' || e.target.id === 'homePage') {
     Render.homePageContent();
   }
+
+  if (e.target.id === 'statsPage') {
+    Render.statsPageContent();
+    Statistic.getAllStats('week');
+  }
+
+  if (e.target.id === 'filterByWeek') {
+    Render.statsPageContent();
+    Statistic.getAllStats('week');
+  }
+
+
+  if (e.target.id === 'filterByMonth') {
+    Render.statsPageContent();
+    Statistic.getAllStats('month');
+  }
+
   if (e.target.id === 'threadPage') {
     Render.threadPageContent();
     Thread.allThreads();
@@ -43,10 +61,11 @@ document.addEventListener('click', function(e) {
       setTimeout(() => Thread.allThreadsMessage(sessionStorage.getItem('currentThread'), sessionStorage.getItem('currentThreadUser')), 1000);
     }
   }
+
   if (e.target.id === 'threadHTMLPage') {
     Render.threadHtmlPage();
   }
-// Render page action END
+
   if (e.target.id === 'newConversation') {
     Thread.newCoversation();
   }

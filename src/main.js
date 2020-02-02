@@ -28,10 +28,7 @@ import './assets/fonts/themify.woff';
 import './scripts/controller/controller'
 import {init} from "./scripts/controller/init";
 
-import './scripts/logic/thread'
-// import {autoLogin} from "./scripts/request/requests";
-// import {renderLoginForm} from './scripts/logic/form';
-// import {renderHomePage} from "./scripts/render/home-page";
+import './scripts/pages/thread/logic/thread'
 
-
+//Initialization my page
 init();

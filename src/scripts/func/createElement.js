@@ -56,7 +56,7 @@ function createElement (out, name, attr, text, style) {
   }
 
   if (text) {
-    if (text.substr(0, 1) === '<' && text.substr(-1, 1) === '>') {
+    if (text.replace(/\s+/g,'').substr(0, 1) === '<' && text.replace(/\s+/g,'').substr(-1, 1) === '>') {
       element.innerHTML = text;
     } else {
       element.appendChild(document.createTextNode(text));

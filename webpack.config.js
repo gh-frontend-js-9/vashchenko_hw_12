@@ -1,6 +1,6 @@
 'use strict';
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const htmlWebpackPlug = require('html-webpack-plugin');
 

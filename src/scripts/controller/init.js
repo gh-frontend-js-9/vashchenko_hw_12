@@ -1,18 +1,24 @@
-import * as Render from "../render/main";
+import * as Render from "../pages/main";
 import {autoLogin} from "../request/requests";
 
+//Check status and render login page or if we have token key in local storage start autoLogin and render Home page!
 export function init() {
   if (sessionStorage.getItem('token')  === null &&
     localStorage.getItem('token')  === null &&
     window.location.pathname !== '/index.html') {
     window.location.href = 'index.html';
     setTimeout(() => Render.loginForm(), 500);
-  } else if (sessionStorage.getItem('token')  !== null  && window.location.pathname === '/' || window.location.pathname == '/index.html') {
+  } else if (sessionStorage.getItem('token')  !== null  &&
+    window.location.pathname === '/' ||
+    window.location.pathname === '/index.html') {
     Render.loginForm();
-  } else if (window.location.pathname === '/' && localStorage.getItem('token') !== null ||
-    window.location.pathname === '/index.html' && localStorage.getItem('token') !== null) {
+  } else if (window.location.pathname === '/' &&
+    localStorage.getItem('token') !== null ||
+    window.location.pathname === '/index.html' &&
+    localStorage.getItem('token') !== null) {
     autoLogin(localStorage.getItem('token'));
-  } else if (window.location.pathname === '/app.html' && localStorage.getItem('myId') !== null) {
+  } else if (window.location.pathname === '/app.html' &&
+    localStorage.getItem('myId') !== null) {
     window.document.onload = Render.homePageContent();
   }
 }

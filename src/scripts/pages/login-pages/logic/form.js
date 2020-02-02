@@ -1,7 +1,7 @@
-import {autoLogin, RequestToServer} from "../request/requests";
-import {usersURL, ContTYPE, AppJSON} from "../variable/variables";
-import {elementToId} from "../func/elementToID";
-import {validEmail, validName, validPassword} from "../func/validation";
+import {autoLogin, RequestToServer} from "../../../request/requests";
+import {usersURL, ContTYPE, AppJSON} from "../../../variable/variables";
+import {elementToId} from "../../../func/elementToID";
+import {validEmail, validName, validPassword} from "../../../func/validation";
 
 let reqToServ = new RequestToServer();
 
@@ -17,15 +17,20 @@ export function logIn() {
       "email": elementToId('email').value,
       "password": elementToId('password').value
     };
-    reqToServ.postData(
-      `${usersURL}login`,
-      ContTYPE,
-      AppJSON,
-      sendData,
-      '',
-      '',
-      rememberMe
+    console.log(reqToServ.postData(
+        `${usersURL}login`,
+        ContTYPE,
+        AppJSON,
+        sendData,
+        (response) => {
+          sessionStorage.setItem('token', response.headers.get('X-Auth-Token'));
+          if (rememberMe === true) {
+            localStorage.setItem('token', response.headers.get('X-Auth-Token'));
+          }
+        }
+      )
     );
+
   }
   setInterval(() => autoLogin(sessionStorage.getItem('token')), 1500);
 }

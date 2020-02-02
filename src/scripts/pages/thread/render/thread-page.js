@@ -1,4 +1,4 @@
-import {CreateElement} from "../func/createElement";
+import {CreateElement} from "../../../func/createElement";
 
 let createElement = new CreateElement();
 
@@ -10,7 +10,7 @@ export function threadPageContent() {
     `<div class="menu-params d-flex flex-row justify-content-between pl-4 pr-4 pt-2 pb-2">
       <div id="actionMessageBtn" class="header__btn"></div>
       <div class="d-flex justify-content-center align-items-center">
-        <form class="menu-params__filter d-flex flex-row align-items-center">
+        <form action="" method="post" class="menu-params__filter d-flex flex-row align-items-center">
           <label for="filterMessage" class="text-white w-75">Filter messages: </label>
           <select id="filterMessage" name="filterMessage" class="form-control">
             <option value="date">Date</option>
@@ -62,9 +62,7 @@ export function threadPageContent() {
     'div',
     {'class':'message__thread w-50'},
     `<div id="threadList" class="message__thread-list"></div>
-      <noscript>
-        <h2 class="text-warning text-center">THIS ELEMENT DON'T WORK WITHOUT JAVASCRIPT</h2>
-      </noscript>
+
     </div>
     <form class="w-100" action="" method="post">
       <label for="messageText" hidden>Write message</label>

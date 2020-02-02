@@ -1,4 +1,5 @@
 ﻿**/trash
+**/dist
 **/.idea
 **/node_modules
 *.psd

@@ -1,7 +1,7 @@
 import {GET, POST, ContTYPE, AppJSON, DefREDIRECT, usersURL} from "../variable/variables";
 
 export class RequestToServer {
-  postData(url, headerName, headerValue, data, callback, redirectPage, rememberMe) {
+  postData(url, headerName, headerValue, data, callback, redirectPage) {
     if (!headerName) {
       headerName = ContTYPE;
     }
@@ -31,7 +31,7 @@ export class RequestToServer {
       redirect: redirectPage
     };
 
-    fetchData(url, requestOptions, callback, rememberMe);
+    fetchDataGet(url, requestOptions, callback);
   }
 
   getData(url, headerName, headerValue, callback, redirectPage) {
@@ -63,6 +63,14 @@ export class RequestToServer {
   }
 }
 
+function fetchDataGet(url, requestOptions, callback) {
+  return fetch(url, requestOptions)
+    .then(callback)
+    .catch(error => console.error('Error in fetchData: ', error));
+}
+
+
+
 function fetchData(url, requestOptions, callback, rememberMe) {
   return fetch(url, requestOptions)
     .then(response => {
@@ -72,15 +80,8 @@ function fetchData(url, requestOptions, callback, rememberMe) {
       }
       return response.json()
     })
-    .then(result => callback(result))
-    .catch(error => console.log('Error in fetchData: ', error));
-}
-
-function fetchDataGet(url, requestOptions, callback) {
-  return fetch(url, requestOptions)
-    .then(response => response.json())
     .then(callback)
-    .catch(error => console.log('Error in fetchData: ', error));
+    .catch(error => console.error('Error in fetchData: ', error));
 }
 
 export function autoLogin(token) {
