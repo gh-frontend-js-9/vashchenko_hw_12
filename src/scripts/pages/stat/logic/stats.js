@@ -7,10 +7,15 @@ import {responseStatus} from "../../../func/response-status";
 let request = new RequestToServer();
 
 export function getAllStats(format) {
-  request.getData(
+  let token = sessionStorage.getItem('token');
+  if (localStorage.getItem('token') !== null) {
+    token = localStorage.getItem('token');
+  }
+
+    request.getData(
     `${statsURL}${format}`,
     AccessTOKEN,
-    sessionStorage.getItem('token'),
+    token,
     (response) => {
       if (responseStatus(response) === true) {
         response.json().then((data) => createCompanyList(data));
