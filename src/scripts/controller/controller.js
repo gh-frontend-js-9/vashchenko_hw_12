@@ -43,6 +43,13 @@ document.addEventListener('click', function(e) {
     Statistic.getAllStats('week');
   }
 
+  if (e.target.closest('#statisticList') !== null) {
+    let trItem = e.target.closest('tr');
+    console.log(trItem);
+
+  }
+
+
   if (e.target.id === 'filterByWeek') {
     Render.statsPageContent();
     Statistic.getAllStats('week');
